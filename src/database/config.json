@@ -1,0 +1,14 @@
+{
+  "development": {
+    "dialect": "sqlite",
+    "storage": "movies.db"
+  },
+  "test": {
+    "dialect": "sqlite",
+    "storage": "movies.db"
+  },
+  "production": {
+    "dialect": "sqlite",
+    "storage": "movies.db"
+  }
+}
