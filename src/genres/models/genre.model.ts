@@ -1,9 +1,10 @@
-import { STRING } from 'sequelize';
+import { DATE, STRING } from 'sequelize';
 import { INTEGER } from 'sequelize';
 import {
   AllowNull,
   AutoIncrement,
   Column,
+  IsDate,
   Model,
   NotEmpty,
   NotNull,
@@ -23,4 +24,12 @@ export class Genre extends Model {
   @AllowNull(false)
   @Column(STRING)
   name: string;
+
+  @IsDate
+  @Column(DATE)
+  createdAt: Date;
+
+  @IsDate
+  @Column(DATE)
+  updatedAt: Date;
 }

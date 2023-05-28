@@ -4,7 +4,5 @@ export class CreateMovieDto {
   homepageUrl: string;
   plot: string;
   releaseDate: Date;
-  runtimeInMinutes: number;
-  createdAt: Date;
-  updatedAt: Date;
+  runtimeInMinutes: number
 }

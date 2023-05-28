@@ -1,19 +1,31 @@
 import { Injectable } from '@nestjs/common';
 import { CreateMovieDto } from './dto/create-movie.dto';
 import { UpdateMovieDto } from './dto/update-movie.dto';
-import { Sequelize } from 'sequelize';
 import { InjectModel } from '@nestjs/sequelize';
 import { Movie } from './models/movie.model';
+import { DateTimeProvider } from 'src/providers/date-time.provider';
 
 @Injectable()
 export class MoviesService {
   constructor(
     @InjectModel(Movie)
     private movieModel: typeof Movie,
+    private dateTimeProvider: DateTimeProvider,
   ) {}
 
-  create(createMovieDto: CreateMovieDto) {
-    return 'This action adds a new movie';
+  async create(createMovieDto: CreateMovieDto) {
+    const utcDateTime = this.dateTimeProvider.getUtcDate();
+
+    return this.movieModel.create({
+      title: createMovieDto.title,
+      budget: createMovieDto.budget,
+      homepageUrl: createMovieDto.homepageUrl,
+      plot: createMovieDto.plot,
+      releaseDate: createMovieDto.releaseDate,
+      runtimeInMinutes: createMovieDto.runtimeInMinutes,
+      createdAt: utcDateTime,
+      updatedAt: utcDateTime,
+    });
   }
 
   async findAll() {
@@ -30,23 +42,15 @@ export class MoviesService {
 
   async update(id: number, updateMovieDto: UpdateMovieDto) {
     const movie = await this.findOne(id);
+    const utcDateTime = this.dateTimeProvider.getUtcDate();
 
-    const now = new Date();
     movie.set({
       title: updateMovieDto.title,
       budget: updateMovieDto.budget,
       plot: updateMovieDto.plot,
       releaseDate: updateMovieDto.releaseDate,
       runtimeInMinutes: updateMovieDto.runtimeInMinutes,
-      updatedAt: Date.UTC(
-        now.getUTCFullYear(),
-        now.getUTCMonth(),
-        now.getUTCDate(),
-        now.getUTCHours(),
-        now.getUTCMinutes(),
-        now.getUTCSeconds(),
-        now.getUTCMilliseconds(),
-      ),
+      updatedAt: utcDateTime,
     });
   }
 

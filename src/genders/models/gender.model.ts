@@ -1,9 +1,11 @@
 import { TEXT } from 'sequelize';
+import { DATE } from 'sequelize';
 import { INTEGER } from 'sequelize';
 import {
   AllowNull,
   AutoIncrement,
   Column,
+  IsDate,
   Model,
   NotEmpty,
   NotNull,
@@ -23,4 +25,12 @@ export class Gender extends Model {
   @AllowNull(false)
   @Column(TEXT)
   name: string;
+
+  @IsDate
+  @Column(DATE)
+  createdAt: Date;
+
+  @IsDate
+  @Column(DATE)
+  updatedAt: Date;
 }

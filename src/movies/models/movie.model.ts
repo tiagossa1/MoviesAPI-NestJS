@@ -17,7 +17,6 @@ import {
 } from 'sequelize-typescript';
 import { MovieGenre } from './movie-genre.model';
 import { MovieCast } from './movie-cast.model';
-import { Gender } from '../../genders/models/gender.model';
 import { Genre } from '../../genres/models/genre.model';
 import { Person } from '../../people/models/person.model';
 

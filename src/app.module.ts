@@ -12,6 +12,7 @@ import { Person } from './people/models/person.model';
 import { PeopleModule } from './people/people.module';
 import { GenresModule } from './genres/genres.module';
 import { GendersModule } from './genders/genders.module';
+import { DateTimeProvider } from './providers/date-time.provider';
 
 @Module({
   imports: [
@@ -28,6 +29,6 @@ import { GendersModule } from './genders/genders.module';
     GendersModule,
   ],
   controllers: [MoviesController],
-  providers: [MoviesService],
+  providers: [MoviesService, DateTimeProvider],
 })
 export class AppModule {}
